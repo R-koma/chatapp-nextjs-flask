@@ -8,8 +8,8 @@ load_dotenv()
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
-CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
-socketio = SocketIO(app, cors_allowed_origins="http://localhost:3000")
+CORS(app, resources={r"/*": {"origins": "*"}})
+socketio = SocketIO(app, cors_allowed_origins="*")
 
 @socketio.on('message')
 def handle_message(msg):
@@ -17,4 +17,5 @@ def handle_message(msg):
   send(msg, broadcast=True)
 
 if __name__ == '__main__':
+  port = int(os.environ.get('PORT', 5000))
   socketio.run(app, debug=True)
