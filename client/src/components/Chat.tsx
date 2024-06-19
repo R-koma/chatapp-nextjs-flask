@@ -16,8 +16,15 @@ const Chat: React.FC = () => {
     socket.on("message", (msg) => {
       setMessages((prevMessages) => [...prevMessages, msg]);
     });
+    socket.on("reconnect_messages", (msgs) => {
+      setMessages(msgs);
+    });
+
+    // 再接続時にメッセージを取得
+    socket.emit("reconnect");
     return () => {
       socket.off("message");
+      socket.off("reconnect_messages");
     };
   }, []);
 

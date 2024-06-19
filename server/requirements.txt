@@ -2,3 +2,4 @@ eventlet
 Flask
 Flask-SocketIO
 python-dotenv
+Flask-SQLAlchemy
