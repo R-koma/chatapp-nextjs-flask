@@ -3,3 +3,4 @@ Flask
 Flask-SocketIO
 python-dotenv
 Flask-SQLAlchemy
+flask_cors
